@@ -23,7 +23,12 @@ class BoardsController < ApplicationController
   end
 
   def show
+    #この書き方なら、コメントモデルからnewで作成する際board_idをセットして初期化しているので、@boardに紐づいたcommentsには影響しない..??は？
+    @comment = Comment.new(board_id: @board.id)
+   # @comment = @board.comments.new
+   #@board.comments.newにすると、保存されていない状態のコメントが、@board.commentsに含まれてしまう。
   end
+
 
   def edit
   end
