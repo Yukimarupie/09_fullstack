@@ -45,8 +45,8 @@ class BoardsController < ApplicationController
   end
 
   def destroy
-   @board.delete
-
+   @board.destroy
+#@board.deleteからdestroyへ(lecture75. dependent: :delete_allにならって。掲示板を消したら、コメントとタグの関連データも消えるようになる
     redirect_to boards_path, flash: { notice: "「#{@board.title}」の掲示板が削除されました" }
 
   end
