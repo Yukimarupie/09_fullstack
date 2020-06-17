@@ -1,6 +1,24 @@
 <div class="d-flex align-items-center">
   <h1>掲示板一覧</h1>
   <div class="ml-auto boards__linkBox">
+
+  <%# 「タグで絞り込み」を追加 %>
+
+    <%# form_tagメソッド、getメソッドによってフォームをサブミットした時は、掲示板一覧画面のアクションが呼び出される。classはcssの為のものだから気にしなくてok %>
+    <%#中にあるselect_tagや、option〜っていう長いやつはどっちもヘルパー。optionのTag.allは負荷が高くなりがちなので、自動で増えないようなもののみに使った方が安全。%>
+    <%= form_tag boards_path, method: :get, class: 'boards__searchForm' do %>
+      <%= select_tag :tag_id,
+                     options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+                     {
+                       prompt: 'タグで絞り込み',
+                       class: 'form-control boards__select',
+                       onchange: 'submit(this.form);'
+                     }
+      %>
+      <%# promptでは、何も選択されていない状態で表示するテキストを指定。onchangeでは、セレクトボックスで何か選択された際に実行するjsのコード %>
+    <% end %>
+  <%# 「タグで絞り込み」を追加終わり%>
+
     <%= link_to '新規作成', new_board_path, class: 'btn btn-outline-dark' %>
   </div>
 </div>

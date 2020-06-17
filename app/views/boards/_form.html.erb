@@ -1,13 +1,3 @@
-<% if flash[:error_messages]  %>
-  <div class="alert alert-danger">
-    <ul>
-      <% flash[:error_messages].each do |msg|  %>
-        <li><%= msg %></li>
-      <% end %>
-    <ul>
-  </div>
-<% end %>
-
 <%= render 'shared/error_messages' %>
 
 <%= form_for board do |f| %>
@@ -23,5 +13,20 @@
     <%= f.label :body, '本文' %>
     <%= f.text_area :body, class: 'form-control', rows: 10 %>
   </div>
+
+<%# lecture76でタグ付けのチェックボックスを追加。そのあと保存ができるようにboardsコントローラも修正 %>
+  <div class="form-group">
+    <span>タグ</span>
+    <%# 存在するタグの数だけチェックボックスを作成する為、フォームビルダーのcollection_check_boxesメソッドを使用。第一引数に、boardオブジェクトのtag_idsを指定することで、掲示板に複数のタグを紐付けれる %>
+    <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+      <div class="form-check">
+        <%= tag.label class: 'form-check-label' do %>
+          <%= tag.check_box class: 'form-check-input' %>
+          <%= tag.text %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
   <%= f.submit '保存', class: 'btn btn-primary' %>
 <% end %>
