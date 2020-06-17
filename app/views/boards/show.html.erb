@@ -15,5 +15,6 @@
   <%= render @board.comments %>
  <%# app/views/comments/_comment.html.erbがコメントの数だけレンダリングされる %>
 </div>
-<%= render partial: 'comment_form', locals: { comment: @comment } %>
+<%= render partial: 'comments/form', locals: { comment: @comment } %>
+<%# comment_formをcomments/formに修正。app/views/board/_comment_form.html.erbからapp/views/comments/_form.html.erbを参照できるようになる。%>
 
