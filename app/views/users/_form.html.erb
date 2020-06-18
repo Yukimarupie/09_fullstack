@@ -1,0 +1,22 @@
+<%# validation errorの時に表示するメッセージをレンダリング %>
+<%= render 'shared/error_messages' %>
+
+
+<%= form_for user do |f| %>
+  <div class="form-group">
+    <%= f.label :name, 'ユーザー名' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password, 'パスワード' %>
+    <%= f.password_field :password, class: 'form-control' %>
+    <%#このpassword_fieldを使うと、入力した値が見えなくなるようにできる %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password_confirmation, 'パスワード（確認）' %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+    <%#このpasswordとpassword_confirmationはuserモデルには存在する属性だが、usersテーブルにはカラムが存在しない。password_dijestというカラムに保存される%>
+  </div>
+
+  <%= f.submit '作成', class: 'btn btn-primary' %>
+<% end %>
