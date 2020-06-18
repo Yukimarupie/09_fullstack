@@ -1,0 +1,15 @@
+<h1>ログイン</h1>
+
+<%= form_for(:session, method: :post, url: login_path) do |f| %>
+<%#ここで:sesssionを記述しておくとnameやpasswordのところにsession[name/password]のようになる。urlのlogin_pathはroutes.rbのpost 'login'が使われる%>
+  <div class="form-group">
+    <%= f.label :name, 'ユーザー名' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password, 'パスワード' %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
+  <%= f.submit 'ログイン', class: 'btn btn-primary' %>
+<% end %>
+© 2020 GitHub, Inc
