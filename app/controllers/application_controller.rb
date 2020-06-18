@@ -11,5 +11,6 @@ class ApplicationController < ActionController::Base
 
 #lecture86 sessionにuser_idの情報がなければreturnする。これはログインしていないことを意味する。
 #もしuser_idが存在しfind_byで該当userがいれば@current_userに格納され、このuserが現在ログイン中のuserであるという判断ができる。
+#この@current_userは、view/application/_headerで呼び出している。
   
 end
