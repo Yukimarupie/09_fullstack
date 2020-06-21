@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id              :integer          not null, primary key
+#  birthday        :date
 #  name            :string(255)      not null
 #  password_digest :string(255)      not null
 #  created_at      :datetime         not null
@@ -43,4 +44,9 @@ class User < ApplicationRecord
     #半角英数字8文字以上100文字以下の正規表現で/\A[a-z\d]{8,100}+\z/iなどを設定したりする。
 =end
 
+  def age
+    now = Time.zone.now
+    (now.strftime('%Y%m%d').to_i - birthday.strftime('%Y%m%d').to_i) / 10000
+  end
+#現在の日付から、誕生日の日付を引き、最終的に10000で割ることで、年齢が取得できる
 end
